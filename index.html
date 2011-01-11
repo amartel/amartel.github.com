@@ -1,0 +1,61 @@
+<html>
+<head></head>
+<body>
+
+I havecreated a fork of BigBlueButton on github (http://github.com/amartel/bigbluebutton)<br>
+I you just want to try, you can install my binaries: <a href="bbb-nosip.tgz">bbb-nosip.tgz</a><br>
+<br>
+<br>
+Here are the instructions:
+<ul>
+<li>Open a session on you BBB server as root</li>
+<li>cd /var/www/bigbluebutton/client</li>
+<li>make a backup of your current files: tar cvzf /root/bbb-backup.tgz VideoconfModule.swf BigBlueButton.swf org/bigbluebutton/common/assets/images/webcam.png</li>
+<li>install my binaries: tar xvzf bbb-nosip.tgz</li>
+<li>update your conf/config.xml file (see below)</li>
+<li>clear your browser cache</li>
+<li>Test... (no need to restart BBB server...)</li>
+</ul>
+
+About your conf/config.xml:<br>
+You need to :
+<ul>
+<li>add a new parameter for the VideoConf module (to activate the microphone)</li>
+<li>comment all audio conference modules..</li>
+</ul>
+Here is an extract o f my config.xml:<br>
+<pre>
+&lt;!--
+		&lt;module name="ListenersModule" url="ListenersModule.swf?v= CUSTOM_2010-10-25" 
+			uri="rtmp://bbbserver/bigbluebutton" 
+			recordingHost="http://bbbserver"
+		/>
+		&lt;module name="PhoneModule" url="PhoneModule.swf?v= CUSTOM_2010-10-25" 
+			uri="rtmp://bbbserver/sip" 
+			dependsOn="ViewersModule"
+		/>
+-->
+		
+		&lt;module name="VideoconfModule" url="VideoconfModule.swf?v=CUSTOM_2010-10-25" 
+			uri="rtmp://bbbserver/video"
+			dependsOn="ViewersModule"
+			videoQuality="85"
+			presenterShareOnly="false"
+			useMicrophone="true"
+		/>
+</pre>
+<br>
+What is done with my patch:
+<ul>
+<li>The "start webcam" icon (in the toolbar) has changed to show the Webcam AND headset together (that's why I changed BigBlueButton.swf)</li>
+<li>When you click the 'start webcam' button, you will activate Webcam AND microphone</li>
+<li>If you don't have a webcam, you will see "No Video" in the published window and in the video window displayed for all other participants (so they know you don't have a webcam...)</li>
+<li>You can change the microphone gain in the published window (it allows you to be muted for all other participants)</li>
+<li>All other participants can change the volume in each displayed windows</li>
+</ul>
+<br>
+Let me know if you have any trouble with these instructions....
+
+
+</body>
+</html>
