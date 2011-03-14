@@ -3,12 +3,14 @@
 <body>
 <b>2011-03-14</b><br>
 I updated <a href="VideoconfModule.swf">VideoconfModule.swf</a> to support Adobe flash 10.3 beta with AEC (Accoustic Echo Cancellation). To use it, just download the file and copy it on your BBB server in /var/www/bigbluebutton/client.
+<hr>
 <br>
+This page is dedicated to BigBlueButton (<a href="http://www.bigbluebutton.org">http://www.bigbluebutton.org</a> with an alternate audio management: I don't use SIP (ie: freeswitch or asterisk) anymore and audio is added directly to video using the basic features of flash.<br>
 <br>
-
-I have created a fork of BigBlueButton on github (<a href="http://github.com/amartel/bigbluebutton">http://github.com/amartel/bigbluebutton</a>)<br>
-I you just want to try, you can install my binaries: <a href="bbb-nosip.tgz">bbb-nosip.tgz</a><br>
+<u>Good</u>: audio is sync with video<br>
+<u>Bad</u>: You can't join the meeting using a phone (and bandwidth is bigger because participants voices are not mixed) <br>
 <br>
+I have created a fork of BigBlueButton on github (<a href="http://github.com/amartel/bigbluebutton">http://github.com/amartel/bigbluebutton</a>) but, if you just want to try, you can install my binaries: <a href="bbb-nosip.tgz">bbb-nosip.tgz</a><br>
 <br>
 Here are the instructions:
 <ul>
@@ -28,8 +30,8 @@ You need to :
 <li>comment all audio conference modules..</li>
 </ul>
 Here is an extract o f my config.xml:<br>
-<pre>
-&lt;!--
+<pre><code>
+	&lt;!--
 		&lt;module name="ListenersModule" url="ListenersModule.swf?v= CUSTOM_2010-10-25" 
 			uri="rtmp://bbbserver/bigbluebutton" 
 			recordingHost="http://bbbserver"
@@ -38,7 +40,7 @@ Here is an extract o f my config.xml:<br>
 			uri="rtmp://bbbserver/sip" 
 			dependsOn="ViewersModule"
 		/>
--->
+	-->
 		
 		&lt;module name="VideoconfModule" url="VideoconfModule.swf?v=CUSTOM_2010-10-25" 
 			uri="rtmp://bbbserver/video"
@@ -47,7 +49,7 @@ Here is an extract o f my config.xml:<br>
 			presenterShareOnly="false"
 			useMicrophone="true"
 		/>
-</pre>
+</code></pre>
 <br>
 What is done with my patch:
 <ul>
@@ -58,7 +60,9 @@ What is done with my patch:
 <li>All other participants can change the volume in each displayed windows</li>
 </ul>
 <br>
-Let me know if you have any trouble with these instructions....
+
+<b>Note that this is not a clean way to add features to BBB (I had to create a new module and not update the existing...). I don't support this patch (sorry: I don't have enough free time) but you can freely use my changes...</b>
+
 
 
 </body>
